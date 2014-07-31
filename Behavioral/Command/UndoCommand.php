@@ -6,7 +6,7 @@ namespace DesignPatterns\Behavioral\Command;
  * This concrete command calls "print" on the Receiver, but an external
  * invoker just knows he can call "execute" and "undo"
  */
-class UndoCommand implements UndoCommandInterface
+class UndoCommand implements CommandInterface
 {
     /**
      * @var Receiver
@@ -28,14 +28,21 @@ class UndoCommand implements UndoCommandInterface
      * Can be one, many, none or even other Command in parameters
      *
      * @param Receiver $console
-     * @param $previous
-     * @param $value
      */
-    public function __construct(Receiver $console, $previous, $value)
+    public function __construct(Receiver $console)
     {
         $this->output = $console;
-        $this->previous = $previous;
+    }
+
+    public function setValue($value)
+    {
+        $this->previous = isset($this->value) ? $this->value : null;
         $this->value = $value;
+    }
+
+    public function getValue()
+    {
+        return $this->value;
     }
 
     /**
@@ -54,6 +61,5 @@ class UndoCommand implements UndoCommandInterface
     public function undo()
     {
         $this->value = $this->previous;
-        $this->execute();
     }
 }

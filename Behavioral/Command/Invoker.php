@@ -33,4 +33,9 @@ class Invoker
         // the invoker is the same whatever is the command
         $this->command->execute();
     }
+
+    public function undo()
+    {
+        $this->command->undo();
+    }
 }

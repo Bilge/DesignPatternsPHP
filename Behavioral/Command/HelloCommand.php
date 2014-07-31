@@ -33,4 +33,10 @@ class HelloCommand implements CommandInterface
         // does all the work
         $this->output->write('Hello World');
     }
+
+    public function undo()
+    {
+        // nothing to undo
+        $this->execute();
+    }
 }

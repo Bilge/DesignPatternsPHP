@@ -12,4 +12,9 @@ interface CommandInterface
      * The Receiver goes in the constructor.
      */
     public function execute();
+
+    /**
+     * Allows the command to undo it's last command
+     */
+    public function undo();
 }
